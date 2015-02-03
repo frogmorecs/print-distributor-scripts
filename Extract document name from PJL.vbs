@@ -37,9 +37,9 @@ Sub ParsePJL(stream)
 				Exit Do
 			End If
 
-			If InStr(1, strLine, "JOB NAME") > 0 Then
-				DocumentName = Mid(strLine, 19)
+			If InStr(1, strLine, "JOBNAME") > 0 Then
+				DocumentName = Mid(strLine, 18)
 			End If
 		End If
-	Loop While Len(strLine) > 0
+	Loop While objTSIn.AtEndOfStream = False
 End Sub 
