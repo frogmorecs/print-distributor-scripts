@@ -43,3 +43,5 @@ Sub ParsePJL(stream)
 		End If
 	Loop While objTSIn.AtEndOfStream = False
 End Sub 
+
+DocumentName = Replace(DocumentName, """", "")
