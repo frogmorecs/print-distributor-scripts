@@ -30,10 +30,11 @@ Loop
 objTSIn.Close
 
 Sub ParsePJL(stream)
-	Do
+	Do While objTSIn.AtEndOfStream = False
 		strLine = stream.ReadLine()
 		If InStr(1, strLine, "@PJL", 1) > 0 Then
 			If InStr(1, strLine, "ENTER", 1) > 0 And InStr(1, strLine, "LANGUAGE", 1) Then
+				LogMessage "Exit Do"
 				Exit Do
 			End If
 
@@ -41,7 +42,8 @@ Sub ParsePJL(stream)
 				DocumentName = Mid(strLine, 18)
 			End If
 		End If
-	Loop While objTSIn.AtEndOfStream = False
+	Loop 
 End Sub 
 
 DocumentName = Replace(DocumentName, """", "")
+
