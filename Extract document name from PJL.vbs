@@ -40,7 +40,6 @@ Sub ParsePJL(stream)
 		strLine = stream.ReadLine()
 		If InStr(1, strLine, "@PJL", 1) > 0 Then
 			If InStr(1, strLine, "ENTER", 1) > 0 And InStr(1, strLine, "LANGUAGE", 1) Then
-				LogMessage "Exit Do"
 				Exit Do
 			End If
 
