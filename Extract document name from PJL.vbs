@@ -5,6 +5,8 @@ Option Explicit
 Dim objFSO, objTSIn
 Dim lChar, i, strLine
 
+Dim searchLength
+
 
 Dim strPJLStartSequence
 strPJLStartSequence = Chr(27) & "%-12345X"
@@ -14,8 +16,12 @@ strPJLStartSequence = Chr(27) & "%-12345X"
 Set objFSO = CreateObject("Scripting.FileSystemObject")
 Set objTSIn = objFSO.OpenTextFile(PrintFilePath, 1, false, 0)
 
-Do While objTSIn.AtEndOfStream = False
+searchLength = 0
+
+
+Do While objTSIn.AtEndOfStream = False And searchLength < 1000
 	For i = 1 To Len(strPJLStartSequence)
+		searchLength = searchLength + 1
 		If objTSIn.Read(1) <> Mid(strPJLStartSequence, i, 1) Then
 			Exit For
 		End If
@@ -46,4 +52,3 @@ Sub ParsePJL(stream)
 End Sub 
 
 DocumentName = Replace(DocumentName, """", "")
-
