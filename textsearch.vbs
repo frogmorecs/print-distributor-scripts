@@ -11,12 +11,14 @@ SearchText = "ABCD"
 Set objFSO = CreateObject ( "Scripting.FileSystemObject")
 Set objTSIn = objFSO.openTextFile(PrintFilePath,  1, false, 0)
 
+AbortJob = true
+
 Do While objTSIn.AtEndOfStream = False
 	strLine = objTSIn.Readline
 
 	If InStr(strLine, SearchText) > 0 Then
-		AbortJob = True
-		LogMessage "Aborting document because text " & searchText & " found."
+		AbortJob = False
+		LogMessage "Text " & searchText & " found."
 		Exit Do
 	End If
 Loop
